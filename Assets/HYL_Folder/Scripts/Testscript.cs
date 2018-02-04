@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Testscript : MonoBehaviour {
 
+    public float boobs;
+
 	// Use this for initialization
 	void Start () {
 		
