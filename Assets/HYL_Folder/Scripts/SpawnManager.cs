@@ -6,8 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager instance;
 
-    public GameObject[] spawnList;
-    public List<SpawnObject> spawns = new List<SpawnObject>(0);
+    public List<GameObject> spawnList;
+    public List<SpawnObject> spawns;
     SpawnObject current;
     SpawnObject newspawn;
 
@@ -34,14 +34,16 @@ public class SpawnManager : MonoBehaviour
             ChoosePosition();
 
             var enemy = (GameObject)Instantiate(current.enemyPrefab, current.pos, current.rot);
-
-            for (int i = 0; i < spawnList.Length; i++)
-            {
-                if (spawnList[i] == null)
-                    spawnList[i] = enemy;
-            }
-
+            spawnList.Add(enemy);
             cooldown = Time.time;
+        }
+
+        foreach (GameObject enemy in spawnList)
+        {
+            if(enemy == null)
+            {
+                spawnList.Remove(enemy);
+            }
         }
     }
 

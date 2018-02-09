@@ -11,6 +11,7 @@ public class HeavyUnit : Base {
 
     public override void FireBullet()
     {
+
         base.FireBullet();
 
         Instantiate(bulletPrefab, transform.position + transform.TransformDirection(new Vector3(0.5f, 0, 1.5F)), transform.rotation);

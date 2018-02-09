@@ -73,7 +73,7 @@ public class Base : Entity
     virtual public void Combat()
     {
         transform.LookAt(GO_Target.transform.position);
-        FireBullet();
+        if (Time.time > FL_shotCooldown) FireBullet();
 
         //---
         if (Vector3.Distance(transform.position, GO_Target.transform.position) > combatDistance + 5)
@@ -86,11 +86,9 @@ public class Base : Entity
     virtual public void FireBullet()
     {
         // Create a bullet and reset the shot timer
-        if (Time.time > FL_shotCooldown)
-        {
-            var _bullet = (GameObject)Instantiate(bulletPrefab, transform.position + transform.TransformDirection(new Vector3(0, 0, 1.5F)), transform.rotation);
-            FL_shotCooldown = Time.time + shotCooldown;
-        }
+
+        var _bullet = (GameObject)Instantiate(bulletPrefab, transform.position + transform.TransformDirection(new Vector3(0, 0, 1.5F)), transform.rotation);
+        FL_shotCooldown = Time.time + shotCooldown;
     }
 
     #endregion

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class OK_PlayerMovement : MonoBehaviour {
+public class OK_PlayerMovement : Entity {
 
     // Variables
     private NavMeshAgent nma_Agent;
