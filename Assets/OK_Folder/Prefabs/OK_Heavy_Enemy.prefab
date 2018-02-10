@@ -296,7 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e31a9003f42c94c9948afad0189c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityType: 3
+  EntityType: 2
+  enemyType: 2
   bulletPrefab: {fileID: 1745761100510026, guid: d12c283679e47be44afcd7608e45d346,
     type: 2}
   shotCooldown: 3

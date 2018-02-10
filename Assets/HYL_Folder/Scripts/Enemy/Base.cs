@@ -12,6 +12,15 @@ public class Base : Entity
 
     #region // ------------ Variables ------------
 
+    public enum Type
+    {
+        Basic,
+        Light,
+        Heavy
+    }
+
+    public Type enemyType;
+
     public GameObject bulletPrefab;
     public float shotCooldown;
     public float combatDistance;

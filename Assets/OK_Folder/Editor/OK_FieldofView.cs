@@ -28,7 +28,7 @@ public class OK_FieldofView : Editor {
 
         // Foreach target in view draw a line in red from the player to the target
         Handles.color = Color.red;
-        foreach (Transform visTarget in fow.visable_Targets)
+        foreach (Transform visTarget in fow.visible_Targets)
         {
             Handles.DrawLine(fow.transform.position, visTarget.position);
         }
