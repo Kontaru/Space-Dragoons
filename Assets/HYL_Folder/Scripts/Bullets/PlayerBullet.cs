@@ -11,7 +11,9 @@ public class PlayerBullet : Bullet {
     //Inherited method
     override public void SendDamage(Collider coll)
     {
-        if (coll != null && coll.gameObject.GetComponent<Entity>().EntityType != Entity.Entities.Player) Destroy(gameObject);
+        if (coll != null && coll.gameObject.GetComponent<Entity>() != null)
+            if (coll.gameObject.GetComponent<Entity>().EntityType != Entity.Entities.Player)
+                Destroy(gameObject);
         ////If there is a collider
         //if (coll != null)
         //{

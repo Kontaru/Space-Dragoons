@@ -19,8 +19,6 @@ public class OK_PlayerTurret : MonoBehaviour {
     public Transform enemy;
 
     [Header("Bullet Params")]
-    //HYL: Remove this variable when a better solution to doing a laser animation is available
-    public GameObject BulletAnimation;
     public int shotDamage;
     public float shotCooldown;
     public float currentCooldown = 0;
@@ -39,6 +37,8 @@ public class OK_PlayerTurret : MonoBehaviour {
         if (enemy == null) return;
 
         CheckRange();
+        PointGun();
+
         if (Time.time > currentCooldown)
         {
             FireProjectile();
@@ -107,17 +107,19 @@ public class OK_PlayerTurret : MonoBehaviour {
         if (Vector3.Distance(enemy.position, transform.position) > viewRadius + 2.0f) enemy = null;
     }
 
+    void PointGun()
+    {
+        Transform Child;
+        Child = transform.GetChild(0).transform;
+        Vector3 relativePos = enemy.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        Child.rotation = rotation;
+    }
+
     void FireProjectile()
     {
         //Deal damage using message sender
         enemy.gameObject.SendMessage("TakeDamage", shotDamage, SendMessageOptions.DontRequireReceiver);
-
-
-        //HYL: Remove this part when a better solution for animating a laser is available
-        //Vector3 dirToTarget = (enemy.position - transform.position).normalized;
-        //float angle = Vector3.SignedAngle(transform.forward, dirToTarget, Vector3.up);
-        //Quaternion rotation = Quaternion.Euler(0, angle, 0);
-        Instantiate(BulletAnimation, transform.position, transform.rotation);
     }
 
     // Setting the DirFromAngle to forward of the gameobject using trigonometery

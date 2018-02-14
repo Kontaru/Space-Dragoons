@@ -7,14 +7,12 @@ public class OK_PlayerMovement : Entity {
 
     // Variables
     private NavMeshAgent nma_Agent;
-    private float fl_Speed;
 
 	// Use this for initialization
 	void Start () {
 
         // Set variable gameobjects and set a static speed variable
         nma_Agent = GetComponent<NavMeshAgent>();
-        fl_Speed = nma_Agent.speed;
 	}
 	
 	// Update is called once per frame
@@ -26,10 +24,10 @@ public class OK_PlayerMovement : Entity {
     void MoveOnPoint()
     {
         // The ship is constantly moving, transform.Translate works better than using a rigidbody due to jitters
-        transform.Translate(Vector3.forward * Time.deltaTime * fl_Speed);
+        transform.Translate(Vector3.forward * Time.deltaTime * nma_Agent.speed);
 
         // Player Input click raycast formed
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
 

@@ -9,20 +9,35 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1614560675002798}
+  m_RootGameObject: {fileID: 1782096907230270}
   m_IsPrefabParent: 1
---- !u!1 &1614560675002798
+--- !u!1 &1485431619427902
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4282166948262662}
-  - component: {fileID: 33942412981117134}
-  - component: {fileID: 65354463352137200}
-  - component: {fileID: 23635988995229722}
-  - component: {fileID: 114970393141348450}
+  - component: {fileID: 4100323444238008}
+  - component: {fileID: 33922254715002080}
+  - component: {fileID: 65882889374206820}
+  - component: {fileID: 23806787719929398}
+  m_Layer: 0
+  m_Name: WeaponModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1782096907230270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4848074973937288}
+  - component: {fileID: 114001281896512564}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -30,25 +45,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4282166948262662
+--- !u!4 &4100323444238008
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614560675002798}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.853, z: 0}
+  m_GameObject: {fileID: 1485431619427902}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
+  m_Father: {fileID: 4848074973937288}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4848074973937288
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782096907230270}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.853, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4100323444238008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23635988995229722
+--- !u!23 &23806787719929398
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614560675002798}
+  m_GameObject: {fileID: 1485431619427902}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -77,40 +106,43 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33942412981117134
+--- !u!33 &33922254715002080
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614560675002798}
+  m_GameObject: {fileID: 1485431619427902}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65354463352137200
+--- !u!65 &65882889374206820
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614560675002798}
+  m_GameObject: {fileID: 1485431619427902}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114970393141348450
+--- !u!114 &114001281896512564
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614560675002798}
+  m_GameObject: {fileID: 1782096907230270}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96f5e546ccd3a2e4e87e3f829c69588e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
-  viewAngle: 150
+  viewAngle: 250
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
   visible_Targets: []
-  tEnemy: {fileID: 0}
+  enemy: {fileID: 0}
+  shotDamage: 1
+  shotCooldown: 0.2
+  currentCooldown: 0
