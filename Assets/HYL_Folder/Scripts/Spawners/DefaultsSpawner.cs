@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
-{
-    public static SpawnManager instance;
+public class DefaultsSpawner : MonoBehaviour {
+
+    public static DefaultsSpawner instance;
 
     public List<GameObject> spawnList;
     public List<SpawnObject> spawns;
@@ -12,7 +12,6 @@ public class SpawnManager : MonoBehaviour
     SpawnObject newspawn;
 
     float cooldown = 0;
-    bool allLimit = true;
 
     void Awake()
     {
@@ -27,24 +26,24 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-
-        if (Time.time > cooldown + 5.0f)
-        {
-
-            ChoosePosition();
-
-            var enemy = (GameObject)Instantiate(current.enemyPrefab, current.pos, current.rot);
-            spawnList.Add(enemy);
-            cooldown = Time.time;
-        }
+        if (Time.time > cooldown + 3.0f) SpawnDefaults();
 
         foreach (GameObject enemy in spawnList)
         {
-            if(enemy == null)
+            if (enemy == null)
             {
                 spawnList.Remove(enemy);
             }
         }
+    }
+
+    void SpawnDefaults()
+    {
+        ChoosePosition();
+
+        var enemy = (GameObject)Instantiate(current.enemyPrefab, current.pos, current.rot);
+        spawnList.Add(enemy);
+        cooldown = Time.time;
     }
 
     void ChoosePosition()

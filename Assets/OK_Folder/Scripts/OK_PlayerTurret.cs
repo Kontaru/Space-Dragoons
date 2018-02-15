@@ -52,11 +52,44 @@ public class OK_PlayerTurret : MonoBehaviour {
         //Create a temp list (so that, in between invokes, visible_Targets won't be empty)
         List<Transform> vTargets = new List<Transform>();
 
+        //--- Add Specials
+
         //Check all enemies out of all enemies spawned
-        foreach (GameObject vEnemy in SpawnManager.instance.spawnList)
+        foreach (GameObject vEnemy in SpecialsSpawner.instance.spawnList)
         {
+            //Don't check if the enemy is null (possible if enemy dies)
+            if (vEnemy == null) break;
             //Check if enemy is within range
-            if (Vector3.Distance(transform.position, vEnemy.transform.position) < viewRadius)
+            else if (Vector3.Distance(transform.position, vEnemy.transform.position) < viewRadius)
+            {
+                // For each target, get a transform and vector3 (Normalizing the vector3)
+                Transform vTarget = vEnemy.transform;
+
+                //Checking if they're within our view angles
+                Vector3 dirToTarget = (vTarget.position - transform.position).normalized;
+                // If target is within the viewAngle get a distance between the player and the target
+                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+                {
+                    float distanceTarget = Vector3.Distance(transform.position, vTarget.position);
+
+                    // Raycast to check if the view from the target to player runs into an obsticle, if not adding the target to the list of targets
+                    if (!Physics.Raycast(transform.position, dirToTarget, distanceTarget, obstacleMask))
+                    {
+                        vTargets.Add(vTarget);
+                    }
+                }
+            }
+        }
+
+        //--- Add Normies
+
+        //Check all enemies out of all enemies spawned
+        foreach (GameObject vEnemy in DefaultsSpawner.instance.spawnList)
+        {
+            //Don't check if the enemy is null (possible if enemy dies)
+            if (vEnemy == null) break;
+            //Check if enemy is within range
+            else if (Vector3.Distance(transform.position, vEnemy.transform.position) < viewRadius)
             {
                 // For each target, get a transform and vector3 (Normalizing the vector3)
                 Transform vTarget = vEnemy.transform;
@@ -91,12 +124,15 @@ public class OK_PlayerTurret : MonoBehaviour {
         foreach (Transform vEnemy in visible_Targets)
         {
             //Calculate distance from player to target
-            curTarget = Vector3.Distance(transform.position, vEnemy.position);
-            //If this distance is the smallest, set this as our enemy
-            if (curTarget < closestTarget)
+            if (vEnemy != null)
             {
-                curTarget = closestTarget;
-                enemy = vEnemy;
+                curTarget = Vector3.Distance(transform.position, vEnemy.position);
+                //If this distance is the smallest, set this as our enemy
+                if (curTarget < closestTarget)
+                {
+                    curTarget = closestTarget;
+                    enemy = vEnemy;
+                }
             }
         }
     }
@@ -112,6 +148,8 @@ public class OK_PlayerTurret : MonoBehaviour {
         Transform Child;
         Child = transform.GetChild(0).transform;
         Vector3 relativePos = enemy.position - transform.position;
+        if (enemy == null)
+            Debug.Log("Fuck me");
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         Child.rotation = rotation;
     }

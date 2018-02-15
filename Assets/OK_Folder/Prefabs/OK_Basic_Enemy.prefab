@@ -297,9 +297,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityType: 2
+  enemyType: 0
   bulletPrefab: {fileID: 1972117302333748, guid: 64207f75fb5e4a14daf06543758e6fbb,
     type: 2}
-  shotCooldown: 0.5
+  shotCooldown: 4
   combatDistance: 10
 --- !u!195 &195655211241339854
 NavMeshAgent:

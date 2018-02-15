@@ -11,7 +11,11 @@ public class SpawnObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        SpawnManager.instance.spawns.Add(this);
+        if(enemyPrefab.GetComponent<Base>().enemyType == Base.Type.Basic)
+            DefaultsSpawner.instance.spawns.Add(this);
+        else
+            SpecialsSpawner.instance.spawns.Add(this);
+
         pos = transform.position;
         rot = transform.rotation;
 	}
