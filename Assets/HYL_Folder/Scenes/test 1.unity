@@ -2174,7 +2174,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4889523302120442, guid: f9e060667bc665e48b0a1bab1d9ae556, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -16.12
+      value: -18.34
       objectReference: {fileID: 0}
     - target: {fileID: 4889523302120442, guid: f9e060667bc665e48b0a1bab1d9ae556, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3534,16 +3534,6 @@ Prefab:
     - target: {fileID: 4057069737971002, guid: a1357a821dc1931448dc3ddac91e7a4f, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114996538425756670, guid: a1357a821dc1931448dc3ddac91e7a4f,
-        type: 2}
-      propertyPath: sounds.Array.data[3].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114996538425756670, guid: a1357a821dc1931448dc3ddac91e7a4f,
-        type: 2}
-      propertyPath: sounds.Array.data[3].volume
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1357a821dc1931448dc3ddac91e7a4f, type: 2}
