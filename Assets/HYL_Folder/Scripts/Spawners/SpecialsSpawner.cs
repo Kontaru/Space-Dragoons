@@ -11,11 +11,13 @@ public class SpecialsSpawner : MonoBehaviour
     SpawnObject current;
     SpawnObject newspawn;
 
+    public bool BL_CanSpawn = false;
     float cooldown = 0;
-    bool allLimit = true;
 
     public int spawnLimit = 0;
     int IN_SpawnedCount;
+
+    #region Typical Singleton Format
 
     void Awake()
     {
@@ -28,19 +30,23 @@ public class SpecialsSpawner : MonoBehaviour
         }
     }
 
+    #endregion
+
     void Update()
     {
-        if (Time.time > cooldown + 5.0f) SpawnSpecials();
-
-        foreach (GameObject enemy in spawnList)
+        if (BL_CanSpawn)
         {
-            if(enemy == null)
-            {
-                spawnList.Remove(enemy);
-            }
+            if (Time.time > cooldown + 5.0f)
+                SpawnSpecials();
+
+            UpdateList();
+        }else
+        {
+            cooldown = Time.time + 5.0f;
         }
     }
 
+    //Spawn a special unit at location (using ChoosePosition();)
     void SpawnSpecials()
     {
         ChoosePosition();
@@ -50,9 +56,22 @@ public class SpecialsSpawner : MonoBehaviour
         cooldown = Time.time;
     }
 
+    //Choose a position amongst spawners on the map
     void ChoosePosition()
     {
         newspawn = spawns[Random.Range(0, spawns.Count)];
         current = newspawn;
+    }
+
+    //Update our spawn list to reflect any enemy deaths that have occured thus far
+    void UpdateList()
+    {
+        for (int i = 0; i < spawnList.Count; i++)
+        {
+            if (spawnList[i] == null)
+            {
+                spawnList.RemoveAt(i);
+            }
+        }
     }
 }

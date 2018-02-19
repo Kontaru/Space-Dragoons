@@ -147,16 +147,20 @@ public class OK_PlayerTurret : MonoBehaviour {
     {
         Transform Child;
         Child = transform.GetChild(0).transform;
-        Vector3 relativePos = enemy.position - transform.position;
-        if (enemy == null)
-            Debug.Log("Fuck me");
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        Child.rotation = rotation;
+
+        if (enemy != null)
+        {
+            Vector3 relativePos = enemy.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            Child.rotation = rotation;
+        }
+
     }
 
     void FireProjectile()
     {
         //Deal damage using message sender
+        AudioManager.instance.PlayOverlap("Player Shoot");
         enemy.gameObject.SendMessage("TakeDamage", shotDamage, SendMessageOptions.DontRequireReceiver);
     }
 

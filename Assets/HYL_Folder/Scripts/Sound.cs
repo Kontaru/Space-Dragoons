@@ -21,7 +21,8 @@ public class Sound
     [TextArea(2, 10)]
     public string description;
 
-    public bool LerpAudio = false;
+    [Header("Audio Lerp")]
+    public bool isLerping;
 
     public bool useGraph;           //set to true if graph is used
     public AnimationCurve AC;
@@ -34,7 +35,6 @@ public class Sound
     [Range(0f, 1f)]
     public float endVol = 0.5f;     //volume at end of lerp
 
-    public bool isLerping;
     [HideInInspector]
     public bool wasLerping;
     [HideInInspector]

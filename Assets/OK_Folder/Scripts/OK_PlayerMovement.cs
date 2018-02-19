@@ -5,11 +5,29 @@ using UnityEngine.AI;
 
 public class OK_PlayerMovement : Entity {
 
+    //Instance our player
+    public static OK_PlayerMovement instance;
+
     // Variables
     private NavMeshAgent nma_Agent;
 
-	// Use this for initialization
-	void Start () {
+    #region Typical Singleton Format
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    #endregion
+
+    // Use this for initialization
+    void Start () {
 
         // Set variable gameobjects and set a static speed variable
         nma_Agent = GetComponent<NavMeshAgent>();
@@ -37,6 +55,14 @@ public class OK_PlayerMovement : Entity {
                 nma_Agent.destination = hit.point;
 
             }
+        }
+
+        if(transform.hasChanged)
+        {
+            AudioManager.instance.Play("Engine");
+        }else
+        {
+            AudioManager.instance.Stop("Engine");
         }
     }
 }
