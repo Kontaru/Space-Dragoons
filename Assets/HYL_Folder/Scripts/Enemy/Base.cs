@@ -96,7 +96,8 @@ public class Base : Entity
     {
         // Create a bullet and reset the shot timer
 
-        var _bullet = (GameObject)Instantiate(bulletPrefab, transform.position + transform.TransformDirection(new Vector3(0, 0, 1.5F)), transform.rotation);
+        var _bullet = (GameObject)Instantiate(bulletPrefab, 
+            transform.position + transform.TransformDirection(new Vector3(0, 0, 1.5F)), transform.rotation);
         FL_shotCooldown = Time.time + shotCooldown + Random.Range(0, 1);
     }
 

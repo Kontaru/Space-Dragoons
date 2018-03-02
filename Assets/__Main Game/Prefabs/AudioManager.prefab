@@ -52,39 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Main Menu
-    clip: {fileID: 8300000, guid: f62447d3c1e632e428c6368189d97c5d, type: 3}
-    volume: 0.7
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-    description: 
-    isLerping: 1
-    useGraph: 1
-    AC:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1.0022199
-        value: 0.70433575
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    lerpTime: 2
-    startVol: 0
-    endVol: 0
-    wasLerping: 0
-    currentTime: 0
-    lerpStartTime: 0
   - name: In-Game
     clip: {fileID: 0}
     volume: 0.7
@@ -128,7 +95,7 @@ MonoBehaviour:
     currentTime: 0
     lerpStartTime: 0
   - name: Player Shoot
-    clip: {fileID: 8300000, guid: fe9a3ddd8fa8187439cb3c860ef368e5, type: 3}
+    clip: {fileID: 8300000, guid: f3caa18c83755954b8923227b53fd263, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0
