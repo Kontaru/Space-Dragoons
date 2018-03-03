@@ -33,11 +33,11 @@ public class OK_PlayerTurret : MonoBehaviour {
     void Update()
     {
         FindClosestTarget();
+        PointGun();
 
         if (enemy == null) return;
 
         CheckRange();
-        PointGun();
 
         if (Time.time > currentCooldown)
         {
@@ -153,6 +153,9 @@ public class OK_PlayerTurret : MonoBehaviour {
             Vector3 relativePos = enemy.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             Child.rotation = rotation;
+        }else
+        {
+            Child.rotation = new Quaternion(0, 0, 0, 0);
         }
 
     }

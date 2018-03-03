@@ -12,6 +12,9 @@ public class Health : MonoBehaviour
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
+        {
+            WaveSequence.instance.RegisterKill(1);
             Destroy(gameObject);
+        }
     }
 }

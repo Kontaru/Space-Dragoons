@@ -2,22 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultsSpawner : MonoBehaviour {
+public class DefaultsSpawner : Spawner {
 
     public static DefaultsSpawner instance;
 
-    public List<GameObject> spawnList;
-    public List<SpawnObject> spawns;
-    SpawnObject current;
-    SpawnObject newspawn;
-
-    public bool BL_CanSpawn = false;
-    float cooldown = 0;
-
-    #region Typical Singleton Format
-
     void Awake()
     {
+        #region Typical Singleton Format
+
         if (instance == null)
             instance = this;
         else
@@ -25,51 +17,51 @@ public class DefaultsSpawner : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-    }
 
-    #endregion
+        #endregion
+        spawners.Add(GetComponent<Spawner>());
+    }
 
     void Update()
     {
+        //Update out list so we know if we've reached our spawn limit
+        UpdateList();
+        //Sets "CanSpawn" to false
+        //if certain conditions are not satisfactory, we stop spawning
+        CheckEnd();
+
+        //After all that, if we can spawn, then do it!
+        SpawnEntity();
+    }
+
+    protected override void CheckEnd()
+    {
+        if (enemycount == spawnLim) BL_CanSpawn = false;
+        if (CheckLimits()) BL_CanSpawn = false;
+    }
+
+    //Spawn a special unit at location (using ChoosePosition();)
+    protected override void SpawnEntity()
+    {
         if (BL_CanSpawn)
         {
-            if (Time.time > cooldown + 3.0f)
-                SpawnDefaults();
+            if (Time.time > cooldown + 7.0f)
+            {
+                for (int burstCount = 0; burstCount < enemiesPerSpawn; burstCount++)
+                {
+                    ChoosePosition();
 
-            UpdateList();
+                    var enemy = (GameObject)Instantiate(current.enemyPrefab, current.pos, current.rot);
+                    spawnList.Add(enemy);
+                }
+
+                cooldown = Time.time;
+            }
         }
         else
         {
             cooldown = Time.time + 5.0f;
         }
-    }
 
-    //Spawn a special unit at location (using ChoosePosition();)
-    void SpawnDefaults()
-    {
-        ChoosePosition();
-
-        var enemy = (GameObject)Instantiate(current.enemyPrefab, current.pos, current.rot);
-        spawnList.Add(enemy);
-        cooldown = Time.time;
-    }
-
-    //Choose a position amongst spawners on the map
-    void ChoosePosition()
-    {
-        newspawn = spawns[Random.Range(0, spawns.Count)];
-        current = newspawn;
-    }
-
-    //Update our spawn list to reflect any enemy deaths that have occured thus far
-    void UpdateList()
-    {
-        for (int i = 0; i < spawnList.Count; i++)
-        {
-            if (spawnList[i] == null)
-            {
-                spawnList.RemoveAt(i);
-            }
-        }
     }
 }

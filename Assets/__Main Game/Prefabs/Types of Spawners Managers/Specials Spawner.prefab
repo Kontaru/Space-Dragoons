@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1667641888174668}
+  m_RootGameObject: {fileID: 1463123835191658}
   m_IsPrefabParent: 1
---- !u!1 &1667641888174668
+--- !u!1 &1463123835191658
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4681088761865912}
-  - component: {fileID: 114304068161624986}
+  - component: {fileID: 4656739256527486}
+  - component: {fileID: 114323991715356354}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: Specials Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4681088761865912
+--- !u!4 &4656739256527486
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1667641888174668}
+  m_GameObject: {fileID: 1463123835191658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,32 +40,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114304068161624986
+--- !u!114 &114323991715356354
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1667641888174668}
+  m_GameObject: {fileID: 1463123835191658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e62b8aff7b36c42945ad933704cfec, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3df0fe216ad240bc49d26b8387a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waves:
-  - name: Wave 1 - Basics
-    myWave: 0
-    anim: {fileID: 0}
-    killsRequired: 2
-    killCount: 0
-  - name: Wave 2 - Specials
-    myWave: 1
-    anim: {fileID: 0}
-    killsRequired: 2
-    killCount: 0
-  - name: Wave 3 - Chaos
-    myWave: 2
-    anim: {fileID: 0}
-    killsRequired: 2
-    killCount: 0
-  IN_waveCount: 0
-  currentWave: 0
+  spawnerType: 1
+  spawnList: []
+  spawns: []
+  spawnLim: 20
+  enemycount: 0
+  BL_CanSpawn: 0

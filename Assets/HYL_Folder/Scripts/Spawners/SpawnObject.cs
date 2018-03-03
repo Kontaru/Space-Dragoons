@@ -8,16 +8,36 @@ public class SpawnObject : MonoBehaviour {
     public Vector3 pos;
     public Quaternion rot;
 
-	// Use this for initialization
-	void Start () {
+    public Spawner.Type enemyType;
 
-        if(enemyPrefab.GetComponent<Base>().enemyType == Base.Type.Basic)
-            DefaultsSpawner.instance.spawns.Add(this);
-        else
-            SpecialsSpawner.instance.spawns.Add(this);
+    [Header("Delayed Spawning")]
+    public bool BL_hasSpawned = false;
+    [HideInInspector] public bool BL_delayMySpawn = false;
+    [HideInInspector] public bool BL_spawnOnce = false;
+    [HideInInspector] public float FL_spawnDelay = 15.0f;
+
+    // Use this for initialization
+    void Start()
+    {
+        foreach (Spawner spawner in Spawner.spawners)
+        {
+            if (enemyType == spawner.spawnerType)
+                spawner.spawns.Add(this);
+        }
 
         pos = transform.position;
         rot = transform.rotation;
-	}
+    }
 
+    void Update()
+    {
+        if (BL_delayMySpawn && BL_hasSpawned && !BL_spawnOnce)
+            StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(FL_spawnDelay);
+        BL_hasSpawned = false;
+    }
 }
